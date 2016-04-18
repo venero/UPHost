@@ -1,2 +1,3 @@
 # UPHost
-Update the host file in windows to connect google.
+Update the hosts file in windows to connect google.
+Raw hosts: https://raw.githubusercontent.com/racaljk/hosts/master/hosts
