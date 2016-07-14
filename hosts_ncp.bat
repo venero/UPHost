@@ -1,10 +1,9 @@
-echo 正在从github下载最新host
 @echo off
+echo [在浏览器打开页面前请勿关闭]
+echo 正在从github下载最新hosts...
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/racaljk/hosts/master/hosts', 'tmphost.txt')"
 clip < tmphost.txt
-@echo on
-echo 下载成功
-@echo off
+echo hosts下载成功
 mshta "javascript:var s=clipboardData.getData('text');if(s)new ActiveXObject('Scripting.FileSystemObject').GetStandardStream(1).Write(s);close();"|more >C:\Windows\System32\drivers\etc\hosts
 ECHO. >> C:\Windows\System32\drivers\etc\hosts
 echo 127.0.0.1 lm.licenses.adobe.com >> C:\Windows\System32\drivers\etc\hosts
@@ -19,6 +18,6 @@ start https://www.facebook.com/
 start https://www.instagram.com/?hl=zh-cn
 start https://www.google.com.hk/?gws_rd=ssl
 del tmphost.txt
-@echo on
-echo 写入成功
-@echo off
+echo hosts写入成功
+echo [批处理将在10次ping测试后关闭]
+ping www.google.com.hk -n 10
