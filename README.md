@@ -11,7 +11,7 @@ Hosts file at `C:\Windows\System32\drivers\etc\hosts`.
 
 Simply run `sudo sh hosts_ncp.sh`. (Root permission required)
 
-Hosts file at `\etc\hosts`.
+Hosts file at `/etc/hosts`.
 
 - Other things
 
