@@ -4,6 +4,22 @@ echo 正在从github下载最新hosts...
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/racaljk/hosts/master/hosts', 'tmphost.txt')"
 clip < tmphost.txt
 echo hosts下载成功
+echo 正在扫描hosts内容...
+set var=y
+set goodlist=google twitter facebook instagram
+set badlist=alipay icbc boc sjtu
+(for %%a in (%goodlist%) do (
+findstr /I %%a tmphost.txt >nul 2>&1 && echo 存在 %%a || echo 不存在 %%a 
+))
+(for %%a in (%badlist%) do (
+findstr /I %%a tmphost.txt >nul 2>&1 && echo 存在 %%a && set /p var="检测到hosts内容存在异常，是否继续？(y/n)" || echo 不存在 %%a 
+))
+if "%var%"=="n" ( 
+del tmphost.txt
+exit
+) else (
+echo hosts扫描结束
+)
 mshta "javascript:var s=clipboardData.getData('text');if(s)new ActiveXObject('Scripting.FileSystemObject').GetStandardStream(1).Write(s);close();"|more >C:\Windows\System32\drivers\etc\hosts
 ECHO. >> C:\Windows\System32\drivers\etc\hosts
 echo 127.0.0.1 lm.licenses.adobe.com >> C:\Windows\System32\drivers\etc\hosts
